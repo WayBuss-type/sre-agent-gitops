@@ -21,6 +21,13 @@ spec:
         image: ollama/ollama:latest
         ports:
         - containerPort: 11434
+        volumeMounts:
+        - name: ollama-data
+          mountPath: /root/.ollama
+      volumes:
+      - name: ollama-data
+        persistentVolumeClaim:
+          claimName: ollama-pvc
 ---
 apiVersion: v1
 kind: Service
