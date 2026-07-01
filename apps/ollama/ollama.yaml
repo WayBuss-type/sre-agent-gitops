@@ -26,8 +26,9 @@ spec:
           mountPath: /root/.ollama
       volumes:
       - name: ollama-data
-        persistentVolumeClaim:
-          claimName: ollama-pvc
+        hostPath:
+          path: /data/ollama-model-storage
+          type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: Service
