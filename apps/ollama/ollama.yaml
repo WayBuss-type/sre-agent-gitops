@@ -10,6 +10,8 @@ metadata:
   namespace: ai-services
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels: { app: ollama }
   template:
@@ -19,6 +21,7 @@ spec:
       containers:
       - name: ollama
         image: ollama/ollama:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11434
         # ========== 新增：容器内挂载路径 ==========
